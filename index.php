@@ -103,7 +103,8 @@ require_once 'includes/index.php';
         </section>
         <br style="clear: both;">
     </main>
-    <footer>
+    <footer class="footer">
+        <p>COPYRIGHT &copy; <?= date('Y'); ?></p>
     </footer>
 </body>
 </html>

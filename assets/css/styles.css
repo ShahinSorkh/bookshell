@@ -81,7 +81,6 @@ a:visited {
     float: right;
     background-color: #6688ff;
     width: calc(20% - 10px);
-    box-shadow: 2px 2px 3px #2200d9;
     margin: 5px;
 }
 
@@ -124,5 +123,15 @@ a:visited {
     background-color: #fa2244;
     color: #ffffff;
     padding: 5px;
+}
+
+.footer {
+    background-color: #fa2244;
+}
+
+.footer p {
+    color: #ffffff;
+    margin: 0;
+    padding: 5px 40px;
 }
 
