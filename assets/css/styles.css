@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ff88aa;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #d90022;
+}
+
+.header {
+    background-color: #d90022;
+    overflow: hidden;
+}
+
+.header a:link,
+.header a:visited {
+    color: #ffffff;
+}
+
+.header,
+.header nav,
+.header nav li a,
+.header aside,
+.header img {
+    height: 50px;
+}
+
+.header nav,
+.header aside {
+    padding: 0 50px;
+}
+
+.header aside {
+    width: 150px;
+    float: left;
+}
+
+.header nav {
+    width: calc(100% - 150px);
+    float: right;
+}
+
+.header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header nav li {
+    float: right;
+}
+
+.header nav li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+.header nav li a:hover {
+    background-color: #fa2244;
+    color: #ffffff;
+}
+
+.header nav .active {
+    color: #d90022;
+    background-color: #ffffff;
+}
+
+.main {
+    padding: 10px;
+}
+
+.main .book-card {
+    float: right;
+    background-color: #6688ff;
+    width: calc(20% - 10px);
+    box-shadow: 2px 2px 3px #2200d9;
+    margin: 5px;
+}
+
+.main .book-head {
+    padding: 5px 0;
+    background-color: #2244ff;
+    text-align: center;
+}
+
+.main .book-head h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.main .book-head a:link,
+.main .book-head a:visited {
+    color: #ffffff;
+}
+
+.main .book-head a:hover {
+    color: #fa2244;
+}
+
+.main .book-body img {
+    width: 100%;
+    height: 150px;
+}
+
+.main .book-body p {
+    padding: 5px 15px;
+}
+
+.main .book-foot {
+    background-color: #111;
+    padding: 10px;
+}
+
+.main .book-foot a:link,
+.main .book-foot a:visited {
+    background-color: #fa2244;
+    color: #ffffff;
+    padding: 5px;
+}
+
