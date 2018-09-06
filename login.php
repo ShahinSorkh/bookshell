@@ -1,6 +1,6 @@
 <?php $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
 <main class="login">
-    <form class="login-form" action="/login.php" method="post">
+    <form class="login-form" action="/auth.php" method="post">
         <div class="field-box">
             <label for="login-username">نام کاربری</label>
             <input id="login-username" name="username" type="text">
@@ -9,9 +9,9 @@
             <label for="login-password">رمز ورود</label>
             <input id="login-password" name="password" type="password">
         </div>
-        <button type="submit">ورود</button>
+        <button type="submit" name="action" value="login">ورود</button>
     </form>
-    <form class="register-form" action="/register.php" method="post">
+    <form class="register-form" action="/auth.php" method="post">
         <div class="field-box">
             <label for="register-username">نام کاربری</label>
             <input id="register-username" name="username" type="text">
@@ -28,7 +28,7 @@
             <label for="register-re-password">تکرار رمز ورود</label>
             <input id="register-re-password" name="re-password" type="password">
         </div>
-        <button type="submit">ثبت نام</button>
+        <button type="submit" name="action" value="register">ثبت نام</button>
     </form>
     <br style="clear: both;">
 </main>
