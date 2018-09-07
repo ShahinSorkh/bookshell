@@ -73,6 +73,20 @@ a:visited {
     background-color: #ffffff;
 }
 
+.msg {
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.msg.danger {
+    color: red;
+}
+
+.msg.success {
+    color: green;
+}
+
 .main {
     padding: 10px;
 }

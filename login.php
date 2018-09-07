@@ -1,4 +1,4 @@
-<?php $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
+<?php $guest_required = true; $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
 <main class="login">
     <form class="login-form" action="/auth.php" method="post">
         <div class="field-box">
@@ -18,7 +18,7 @@
         </div>
         <div class="field-box">
             <label for="register-email">ایمیل</label>
-            <input id="register-email" name="email" type="text">
+            <input id="register-email" name="email" type="email">
         </div>
         <div class="field-box">
             <label for="register-password">رمز ورود</label>
