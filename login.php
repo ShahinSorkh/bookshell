@@ -1,4 +1,4 @@
-<?php $guest_required = true; $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
+<?php $guest_required = true; $current_page = 'login'; include_once __DIR__.'/template/head.php'; ?>
 <main class="login">
     <form class="login-form" action="/auth.php" method="post">
         <div class="field-box">
@@ -32,5 +32,5 @@
     </form>
     <br style="clear: both;">
 </main>
-<?php include_once __DIR__ . '/template/foot.php'; ?>
+<?php include_once __DIR__.'/template/foot.php'; ?>
 
