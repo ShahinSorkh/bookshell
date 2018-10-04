@@ -11,11 +11,12 @@ if (in_array($action, ['login', 'register'])) {
     elseif (!$password) redirect('/login.php', 'invalid password', 'danger');
     elseif ($action === 'login') {
         // login
-        $result = mysqli_query($db, "select id,password from users where username='{$username}' limit 1;");
+        $result = mysqli_query($db, "select * from users where username='{$username}' limit 1;");
         $user = mysqli_fetch_assoc($result);
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user['id'];
-            redirect('/user.php', 'logged in successfully', 'success');
+            unset($user['password']);
+            $_SESSION['user'] = $user;
+            redirect("/$user[role].php", 'logged in successfully', 'success');
         } else redirect('/login.php', 'user not found', 'danger');
     } else {
         // register
@@ -31,5 +32,4 @@ if (in_array($action, ['login', 'register'])) {
         } else redirect('/login.php', 'invalid email', 'danger');
     }
 } else redirect('/login.php', 'invalid action', 'danger');
-exit;
 
