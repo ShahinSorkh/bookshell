@@ -35,6 +35,18 @@ function is_admin()
     return logged_in() && $_SESSION['user']['role'] === 'admin';
 }
 
+function is_user()
+{
+    return logged_in() && $_SESSION['user']['role'] === 'user';
+}
+
+function redirect_if_not_user()
+{
+    if (!is_user()) {
+        redirect('/index.php', 'you are not allowed to be here', 'danger');
+    }
+}
+
 function redirect_if_not_admin()
 {
     if (!is_admin()) {
