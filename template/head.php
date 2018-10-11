@@ -26,7 +26,7 @@ if (logged_in()) $user = $_SESSION['user'];
                 <li><a href="/">MY BOOK SHELL</a></li>
                 <li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="/"><i class="fa fa-home"></i></a></li>
                 <?php if (logged_in()): ?>
-                    <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="/user.php"><?= strtoupper($user['role']); ?></a></li>
+                    <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="/<?= $user['role']; ?>/index.php"><?= strtoupper($user['role']); ?></a></li>
                     <li><a href="/logout.php">LOGOUT</a></li>
                 <?php else: ?>
                     <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="/login.php">LOGIN</a></li>

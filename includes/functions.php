@@ -19,7 +19,7 @@ function redirect_if_logged_in()
 {
     if (logged_in()) {
         $user = $_SESSION['user'];
-        redirect("/{$user['role']}.php");
+        redirect("/{$user['role']}/index.php");
     }
 }
 
