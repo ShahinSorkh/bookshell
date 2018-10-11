@@ -18,7 +18,7 @@ $book = mysqli_fetch_assoc($result);
     <p style="direction:rtl;"><?= $book['price']; ?> تومان</p>
 </article>
 <?php if (logged_in()): ?>
-    <footer class="book-foot"><a href="/user/index.php?page=order&id=<?= $book['id']; ?>">سفارش خرید</a></footer>
+    <footer class="book-foot"><a href="/user.php?page=order&id=<?= $book['id']; ?>">سفارش خرید</a></footer>
     <br style="clear: both;">
 <?php else: ?>
     <footer class="book-foot"><a href="/login.php">برای خرید باید وارد شوید</a></footer>

@@ -16,7 +16,7 @@ if (in_array($action, ['login', 'register'])) {
         if ($user && password_verify($password, $user['password'])) {
             unset($user['password']);
             $_SESSION['user'] = $user;
-            redirect("/$user[role]/index.php", 'logged in successfully', 'success');
+            redirect("/$user[role].php", 'logged in successfully', 'success');
         } else redirect('/login.php', 'user not found', 'danger');
     } else {
         // register

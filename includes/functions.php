@@ -19,7 +19,7 @@ function redirect_if_logged_in()
 {
     if (logged_in()) {
         $user = $_SESSION['user'];
-        redirect("/{$user['role']}/index.php");
+        redirect("/{$user['role']}.php");
     }
 }
 
@@ -65,7 +65,7 @@ function save_uploaded_file($field, $filename)
     if (!is_dir(dirname($target_path))) mkdir(dirname($target_path), 0777, true);
     if (is_file($target_path)) unlink($target_path);
 
-    move_uploaded_file( $_FILES[$field]['tmp_name'], $target_path);
+    move_uploaded_file($_FILES[$field]['tmp_name'], $target_path);
     return $target;
 }
 
