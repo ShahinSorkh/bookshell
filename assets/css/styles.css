@@ -225,3 +225,21 @@ a:visited {
     padding: 5px;
 }
 
+ul.inline {
+    direction: rtl;
+    list-style: none;
+}
+
+ul.inline li {
+    display: inline-block;
+    margin: auto 10px;
+}
+
+ul.inline li::before {
+    content: '<';
+}
+
+ul.inline li::after {
+    content: '>';
+}
+
