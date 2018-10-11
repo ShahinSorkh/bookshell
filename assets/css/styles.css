@@ -196,3 +196,29 @@ a:visited {
     padding: 5px 40px;
 }
 
+.list-books {
+    width: 100%;
+    direction: rtl;
+    border-collapse: collapse;
+    border: 1px #555555 solid;
+}
+
+.list-books th,
+.list-books td {
+    padding: 10px;
+    border: 1px #555555 solid;
+}
+
+.list-books img {
+    width: 200px;
+    height: 100px;
+}
+
+.list-books .action {
+    background-color: #333333;
+    color: #ffffff;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+}
+

@@ -11,6 +11,7 @@ if ($page && is_file(__DIR__ . "/{$page}.php")) {
 } else { ?>
 
 <ul>
+    <li><a href="<?= $_SERVER['PHP_SELF']; ?>?page=list-books">List books</a></li>
     <li><a href="<?= $_SERVER['PHP_SELF']; ?>?page=new-book">Create new book</a></li>
 </ul>
 
