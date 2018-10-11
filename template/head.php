@@ -17,6 +17,7 @@ if (logged_in()) $user = $_SESSION['user'];
     <link rel="icon" href="/favicon.ico">
 </head>
 <body>
+<div class="wrapper">
     <header class="header">
         <aside>
             <a href="/"><img src="/assets/img/logo-white-512x512.png" alt="BOOK SHELL"></a>
