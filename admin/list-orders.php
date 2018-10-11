@@ -29,9 +29,9 @@ while(($order = mysqli_fetch_assoc($result))) {
 }
 ?>
 <ul class="inline">
-    <li><a href="/admin/index.php?page=list-orders&filter=all">همه</a></li>
-    <li><a href="/admin/index.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
-    <li><a href="/admin/index.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
+    <li><a href="/admin.php?page=list-orders&filter=all">همه</a></li>
+    <li><a href="/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
+    <li><a href="/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
 </ul>
 <table class="list-books">
     <tr>
@@ -55,7 +55,7 @@ while(($order = mysqli_fetch_assoc($result))) {
             <?php if ($order['delivered_at']): ?>
                 تحویل شده
             <?php else: ?>
-                <a class="action" href="/admin/index.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+                <a class="action" href="/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
             <?php endif; ?>
         </td>
     </tr>
