@@ -41,4 +41,3 @@ function redirect_if_not_admin()
         redirect('/index.php', 'you are not allowed to be here', 'danger');
     }
 }
-

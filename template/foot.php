@@ -4,6 +4,6 @@
 </body>
 </html>
 <?php
-require_once __DIR__ . '/../includes/terminate.php';
+require_once __DIR__.'/../includes/terminate.php';
 ?>
 

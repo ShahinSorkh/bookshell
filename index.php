@@ -1,10 +1,9 @@
-<?php include_once __DIR__ . '/template/head.php'; ?>
+<?php include_once __DIR__.'/template/head.php'; ?>
 <main class="main">
     <?php
-    $pics = array_values(array_diff(scandir(__DIR__. '/assets/img/books-cover/'), ['.','..']));
-    foreach($pics as $i => $p) {
-        $pic = substr($p, 0, strpos($p, '.'));
-        ?>
+    $pics = array_values(array_diff(scandir(__DIR__.'/assets/img/books-cover/'), ['.', '..']));
+    foreach ($pics as $i => $p) {
+        $pic = substr($p, 0, strpos($p, '.')); ?>
         <section class="book-card">
             <header class="book-head">
                 <a href="#"><h3><?= $pic; ?></h3></a>
@@ -17,10 +16,13 @@
             </article>
             <footer class="book-foot"><a href="#">READ MORE</a></footer>
         </section>
-        <?php if ($i % 5 === 4) { ?>
+        <?php if ($i % 5 === 4) {
+            ?>
             <br style="clear: both:">
-        <?php } ?>
-    <?php } ?>
+        <?php
+        } ?>
+    <?php
+    } ?>
     <br style="clear: both;">
 </main>
-<?php include_once __DIR__ . '/template/foot.php'; ?>
+<?php include_once __DIR__.'/template/foot.php'; ?>
