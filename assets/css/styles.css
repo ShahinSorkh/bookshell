@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 html, body {
@@ -149,7 +150,15 @@ a:visited {
     padding: 5px;
 }
 
-.main .field-box input {
+.main form {
+    direction: rtl;
+    margin: 10px;
+    padding: 20px;
+    background-color: #6688ff;
+}
+
+.main .field-box input,
+.main .field-box textarea {
     margin: 15px 0;
     background-color: #ffffff;
     color: #000000;
@@ -162,11 +171,7 @@ a:visited {
 .main .login-form,
 .main .register-form {
     float: right;
-    direction: rtl;
-    margin: 10px;
-    padding: 20px;
     width: calc(50% - 20px);
-    background-color: #6688ff;
 }
 
 .main button[type=submit] {
