@@ -1,23 +1,26 @@
 <?php
 $book_id = intval($_GET['id']);
 $result = mysqli_query($db, "select * from books where id=$book_id limit 1");
-if (!$result) redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
-if (mysqli_num_rows($result) < 1) redirect('/admin.php?page=list-books', 'book not found', 'danger');
+if (!$result) {
+    redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
+}
+if (mysqli_num_rows($result) < 1) {
+    redirect('/admin.php?page=list-books', 'book not found', 'danger');
+}
 
 $book = mysqli_fetch_assoc($result);
 if (isset($_POST['submit']) && $_POST['submit'] === 'edit-book') {
-
     $name = filter_var($_POST['name']);
 
     $description = filter_var($_POST['description']);
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
 
     $cover = $name && $_FILES['cover']['error'] === UPLOAD_ERR_OK
-        ? save_uploaded_file('cover', 'books/' . md5($id) . '/cover')
+        ? save_uploaded_file('cover', 'books/'.md5($id).'/cover')
         : filter_var($_POST['cover']);
 
     $file = $name && $_FILES['file']['error'] === UPLOAD_ERR_OK
-        ? save_uploaded_file('file', 'books/' . md5($id) . '/file')
+        ? save_uploaded_file('file', 'books/'.md5($id).'/file')
         : filter_var($_POST['file']);
 
     if ($name && $description && $price && $cover && $file) {
@@ -26,9 +29,14 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'edit-book') {
         $cover = mysqli_real_escape_string($db, $cover);
 
         $result = mysqli_query($db, "update books set name='$name', description='$description', path='$file', cover='$cover', price=$price where id=$book[id]");
-        if (!$result) redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
-        else redirect('/admin.php?page=list-books', 'book saved', 'success');
-    } else redirect('/admin.php?page=list-books', 'invalid input', 'danger');
+        if (!$result) {
+            redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
+        } else {
+            redirect('/admin.php?page=list-books', 'book saved', 'success');
+        }
+    } else {
+        redirect('/admin.php?page=list-books', 'invalid input', 'danger');
+    }
 }
 ?>
 <form class="new-book-form" action="<?= $_SERVER['PHP_SELF'] ?>?id=<?= $book['id']; ?>" method="post" enctype="multipart/form-data">
