@@ -11,6 +11,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, email, password, role) VALUES ('admin', 'admin@local.host', '$2y$10$HyxQDw4rEpPEAL/Ua9IJku.85jdmredVRAOiorLIrtxMBVpK2Wf7K', 'admin');
+INSERT INTO users (username, email, password, role) VALUES ('test', 'test@local.host', '$2y$10$6xw37IavGPJXnk2zZWo1L.PrHQWPxysmUL43d9SzKO4vfZOynCnA6', 'user');
 
 CREATE TABLE IF NOT EXISTS books (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

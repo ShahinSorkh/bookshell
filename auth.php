@@ -4,14 +4,14 @@ redirect_if_logged_in();
 
 $action = $_POST['action'];
 if (in_array($action, ['login', 'register'])) {
-    $username = filter_var($_POST['username'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^\\w{5,45}$/']]);
+    $username = filter_var($_POST['username'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^\\w{4,45}$/']]);
     $username = mysqli_real_escape_string($db, $username);
     $password = filter_var($_POST['password']);
     if (!$username) redirect('/login.php', 'invalid username', 'danger');
     elseif (!$password) redirect('/login.php', 'invalid password', 'danger');
     elseif ($action === 'login') {
         // login
-        $result = mysqli_query($db, "select * from users where username='{$username}' limit 1;");
+        $result = mysqli_query($db, "select * from users where username='$username' limit 1");
         $user = mysqli_fetch_assoc($result);
         if ($user && password_verify($password, $user['password'])) {
             unset($user['password']);
