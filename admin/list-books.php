@@ -9,7 +9,7 @@ while(($book = mysqli_fetch_assoc($result))) {
 ?>
 <table class="list-books">
     <tr>
-        <th>ردیف</th>
+        <th><a class="action" href="<?= $_SERVER['PHP_SELF']; ?>?page=new-book">+</a> ردیف</th>
         <th>جلد</th>
         <th>نام کتاب</th>
         <th>قیمت</th>
