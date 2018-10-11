@@ -13,15 +13,19 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'edit-book') {
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
 
     $cover = $name && $_FILES['cover']['error'] === UPLOAD_ERR_OK
-        ? save_uploaded_file('cover', "books/$name")
+        ? save_uploaded_file('cover', 'books/' . md5($id) . '/cover')
         : filter_var($_POST['cover']);
 
-    if ($name && $description && $price && $cover) {
+    $file = $name && $_FILES['file']['error'] === UPLOAD_ERR_OK
+        ? save_uploaded_file('file', 'books/' . md5($id) . '/file')
+        : filter_var($_POST['file']);
+
+    if ($name && $description && $price && $cover && $file) {
         $name = mysqli_real_escape_string($db, $name);
         $description = mysqli_real_escape_string($db, $description);
         $cover = mysqli_real_escape_string($db, $cover);
 
-        $result = mysqli_query($db, "update books set name='$name', description='$description', cover='$cover', price=$price where id=$book[id]");
+        $result = mysqli_query($db, "update books set name='$name', description='$description', path='$file', cover='$cover', price=$price where id=$book[id]");
         if (!$result) redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
         else redirect('/admin.php?page=list-books', 'book saved', 'success');
     } else redirect('/admin.php?page=list-books', 'invalid input', 'danger');
@@ -33,6 +37,11 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'edit-book') {
         <input id="cover" type="file" name="cover" accept="image/*">
     </div>
     <input type="hidden" name="cover" value="<?= $book['cover']; ?>">
+    <div class="field-box">
+        <label for="file">فایل</label>
+        <input id="file" type="file" name="file">
+    </div>
+    <input type="hidden" name="file" value="<?= $book['file']; ?>">
     <div style="float:right;width:50%;" class="field-box">
         <label for="name">نام کتاب</label>
         <input style="margin-right:10px;" id="name" type="text" name="name" value="<?= $book['name']; ?>">

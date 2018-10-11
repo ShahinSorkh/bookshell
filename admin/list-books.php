@@ -26,6 +26,7 @@ while(($book = mysqli_fetch_assoc($result))) {
         <td><?= $book['description']; ?></td>
         <td><?= $book['created_at']; ?></td>
         <td>
+            <a class="action" href="<?= $book['path']; ?>">دریافت فایل</a>
             <a class="action" href="<?= $_SERVER['PHP_SELF']; ?>?page=edit-book&id=<?= $book['id']; ?>">ویرایش</a>
             <a class="action" href="<?= $_SERVER['PHP_SELF']; ?>?page=delete-book&id=<?= $book['id']; ?>">حذف</a>
         </td>

@@ -4,12 +4,16 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
     $name = filter_var($_POST['name']);
     $description = filter_var($_POST['description']);
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
-    if ($name && $description && $price && ($cover = save_uploaded_file('cover', 'books/' . md5($name)))) {
+    if ($name && $description && $price
+        && ($cover = save_uploaded_file('cover', 'books/' . md5($id) . '/cover'))
+        && ($file = save_uploaded_file('file', 'books/' . md5($id) . '/file'))
+    ) {
         $name = mysqli_real_escape_string($db, $name);
         $description = mysqli_real_escape_string($db, $description);
         $cover = mysqli_real_escape_string($db, $cover);
+        $file = mysqli_real_escape_string($db, $file);
 
-        $result = mysqli_query($db, "insert into books (name,description,price,cover) values ('$name','$description',$price,'$cover')");
+        $result = mysqli_query($db, "insert into books (name,description,price,cover,path) values ('$name','$description',$price,'$cover','$file')");
         if (!$result) redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
         else redirect('/admin.php?page=list-books', 'book saved', 'success');
     } else redirect('/admin.php?page=list-books', 'invalid input', 'danger');
@@ -19,6 +23,10 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
     <div class="field-box">
         <label for="cover">جلد</label>
         <input id="cover" type="file" name="cover" accept="image/*">
+    </div>
+    <div class="field-box">
+        <label for="file">فایل</label>
+        <input id="file" type="file" name="file">
     </div>
     <div style="float:right;width:50%;" class="field-box">
         <label for="name">نام کتاب</label>

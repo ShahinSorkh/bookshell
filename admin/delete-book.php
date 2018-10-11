@@ -6,7 +6,13 @@ if (mysqli_num_rows($result) < 1) redirect('/admin.php?page=list-books', 'book n
 
 $book = mysqli_fetch_assoc($result);
 
-if (mysqli_query($db, "delete from books where id=$book[id] limit 1") && unlink(ROOT_DIR . $book['cover']))
+if (mysqli_query($db, "delete from books where id=$book[id] limit 1")) {
+    $dir = ROOT_DIR . dirname($book['cover']);
+    if (is_dir($dir)) {
+        $files = scandir($dir);
+        foreach ($files as $file) if (is_file("$dir/$file")) unlink("$dir/$file");
+        rmdir($dir);
+    }
     redirect('/admin.php?page=list-books', 'book deleted', 'success');
-else redirect('/admin.php?page=list-books', 'could not delete: ' . mysqli_error($db), 'danger');
+} else redirect('/admin.php?page=list-books', 'could not delete: ' . mysqli_error($db), 'danger');
 
