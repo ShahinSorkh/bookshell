@@ -56,16 +56,22 @@ function redirect_if_not_admin()
 
 function save_uploaded_file($field, $filename)
 {
-    if ($_FILES[$field]['error'] !== UPLOAD_ERR_OK) return false;
+    if ($_FILES[$field]['error'] !== UPLOAD_ERR_OK) {
+        return false;
+    }
     $info = pathinfo($_FILES[$field]['name']);
     $newname = "$filename.$info[extension]";
 
     $target = "/uploaded/$newname";
-    $target_path = ROOT_DIR . $target;
-    if (!is_dir(dirname($target_path))) mkdir(dirname($target_path), 0777, true);
-    if (is_file($target_path)) unlink($target_path);
+    $target_path = ROOT_DIR.$target;
+    if (!is_dir(dirname($target_path))) {
+        mkdir(dirname($target_path), 0777, true);
+    }
+    if (is_file($target_path)) {
+        unlink($target_path);
+    }
 
-    move_uploaded_file( $_FILES[$field]['tmp_name'], $target_path);
+    move_uploaded_file($_FILES[$field]['tmp_name'], $target_path);
+
     return $target;
 }
-
