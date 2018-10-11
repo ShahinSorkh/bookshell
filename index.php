@@ -1,24 +1,25 @@
 <?php include_once __DIR__ . '/template/head.php'; ?>
 <?php
-$pics = array_values(array_diff(scandir(__DIR__. '/assets/img/books-cover/'), ['.','..']));
-foreach($pics as $i => $p) {
-    $pic = substr($p, 0, strpos($p, '.'));
-    ?>
+$result = mysqli_query($db, 'select * from books');
+if (!$result) die(mysqli_error($db));
+
+$books = [];
+while(($book = mysqli_fetch_assoc($result))) {
+    $books[] = $book;
+}
+
+foreach($books as $book): ?>
     <section class="book-card">
         <header class="book-head">
-            <a href="#"><h3><?= $pic; ?></h3></a>
+            <a href="#"><h3><?= $book['name']; ?></h3></a>
         </header>
         <article class="book-body">
-            <img src="/assets/img/books-cover/<?= $pic; ?>.png" alt="<?= $pic; ?>">
-            <p>
-                Lorem architecto quis sunt blanditiis cum, delectus Dicta necessitatibus dolorum sit quos tempore laboriosam! Ullam ratione unde tenetur esse obcaecati. Minus officia ex commodi modi officiis. Ipsam possimus reprehenderit reiciendis!
-            </p>
+            <img src="<?= $book['cover']; ?>" alt="<?= $book['name']; ?>">
+            <p><?= $book['description']; ?></p>
+            <p><?= $book['price']; ?></p>
         </article>
         <footer class="book-foot"><a href="#">READ MORE</a></footer>
     </section>
-    <?php if ($i % 5 === 4) { ?>
-        <br style="clear: both:">
-    <?php } ?>
-<?php } ?>
+<?php endforeach; ?>
 <br style="clear: both;">
 <?php include_once __DIR__ . '/template/foot.php'; ?>
