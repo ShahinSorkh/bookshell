@@ -1,6 +1,7 @@
 <?php
 $login_required = true;
 $current_page = 'user';
+ob_start();
 include_once __DIR__ . '/../template/head.php';
 
 $page = $_GET['page'] ?? null;

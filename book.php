@@ -15,8 +15,13 @@ $book = mysqli_fetch_assoc($result);
 <article class="book-body">
     <img src="<?= $book['cover']; ?>" alt="<?= $book['name']; ?>">
     <p style="direction:rtl;"><?= nl2br($book['description']); ?></p>
-    <p style="direction:rtl;"><?= $book['price']; ?></p>
+    <p style="direction:rtl;"><?= $book['price']; ?> تومان</p>
 </article>
-<footer class="book-foot"><a href="#">سفارش خرید</a></footer>
-<br style="clear: both;">
+<?php if (logged_in()): ?>
+    <footer class="book-foot"><a href="/user/index.php?page=order&id=<?= $book['id']; ?>">سفارش خرید</a></footer>
+    <br style="clear: both;">
+<?php else: ?>
+    <footer class="book-foot"><a href="/login.php">برای خرید باید وارد شوید</a></footer>
+    <br style="clear: both;">
+<?php endif; ?>
 <?php include_once __DIR__ . '/template/foot.php'; ?>
