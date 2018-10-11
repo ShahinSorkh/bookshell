@@ -162,7 +162,7 @@ a:visited {
     margin: 15px 0;
     background-color: #ffffff;
     color: #000000;
-    border: none;
+    border: solid #555555 1px;
     border-radius: 0;
     line-height: 1.5;
     width: 100%;
