@@ -1,5 +1,5 @@
 <?php
-$filter = $_GET['filter'] ?? null;
+$filter = $_GET['filter'] ?? 'all';
 
 switch ($filter) {
 case 'delivered':
@@ -52,7 +52,11 @@ while(($order = mysqli_fetch_assoc($result))) {
         <td><?= $order['user']['username']; ?></td>
         <td><?= $order['user']['email']; ?></td>
         <td>
-            <a class="action" href="/admin/index.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+            <?php if ($order['delivered_at']): ?>
+                تحویل شده
+            <?php else: ?>
+                <a class="action" href="/admin/index.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+            <?php endif; ?>
         </td>
     </tr>
     <?php endforeach; ?>
