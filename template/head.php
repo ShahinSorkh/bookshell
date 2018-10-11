@@ -1,10 +1,18 @@
 <?php
-require_once __DIR__ . '/../includes/index.php';
-if (isset($login_required) && $login_required) redirect_if_not_logged_in();
-if (isset($admin_required) && $admin_required) redirect_if_not_admin();
-if (isset($guest_required) && $guest_required) redirect_if_logged_in();
+require_once __DIR__.'/../includes/index.php';
+if (isset($login_required) && $login_required) {
+    redirect_if_not_logged_in();
+}
+if (isset($admin_required) && $admin_required) {
+    redirect_if_not_admin();
+}
+if (isset($guest_required) && $guest_required) {
+    redirect_if_logged_in();
+}
 $current_page = $current_page ?? 'home';
-if (logged_in()) $user = $_SESSION['user'];
+if (logged_in()) {
+    $user = $_SESSION['user'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
