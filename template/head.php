@@ -45,4 +45,5 @@ if (logged_in()) $user = $_SESSION['user'];
         unset($_SESSION['msg-type']);
         ?>
     <?php endif; ?>
+    <main class="main">
 

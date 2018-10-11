@@ -1,3 +1,4 @@
+    </main>
 </div>
 <footer class="footer">
     <p>COPYRIGHT &copy; <?= date('Y'); ?></p>
