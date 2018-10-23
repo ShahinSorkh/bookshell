@@ -12,17 +12,22 @@ case 'all':
 default:
     $result = mysqli_query($db, 'select * from orders');
 }
-if (!$result) die(mysqli_error($db));
+if (!$result) {
+    die(mysqli_error($db));
+}
 
 $orders = [];
-while(($order = mysqli_fetch_assoc($result))) {
-
+while (($order = mysqli_fetch_assoc($result))) {
     $aresult = mysqli_query($db, "select * from books where id=$order[book_id] limit 1");
-    if (!$aresult) redirect('/admin.php', mysqli_error($db), 'danger');
+    if (!$aresult) {
+        redirect('/admin.php', mysqli_error($db), 'danger');
+    }
     $order['book'] = mysqli_fetch_assoc($aresult);
 
     $bresult = mysqli_query($db, "select * from users where id=$order[user_id] limit 1");
-    if (!$bresult) redirect('/admin.php', mysqli_error($db), 'danger');
+    if (!$bresult) {
+        redirect('/admin.php', mysqli_error($db), 'danger');
+    }
     $order['user'] = mysqli_fetch_assoc($bresult);
 
     $orders[] = $order;

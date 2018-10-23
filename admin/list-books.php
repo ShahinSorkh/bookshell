@@ -1,9 +1,11 @@
 <?php
 $result = mysqli_query($db, 'select * from books');
-if (!$result) die(mysqli_error($db));
+if (!$result) {
+    die(mysqli_error($db));
+}
 
 $books = [];
-while(($book = mysqli_fetch_assoc($result))) {
+while (($book = mysqli_fetch_assoc($result))) {
     $books[] = $book;
 }
 ?>
