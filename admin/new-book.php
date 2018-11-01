@@ -1,12 +1,11 @@
 <?php
 if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
-
     $name = filter_var($_POST['name']);
     $description = filter_var($_POST['description']);
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
     if ($name && $description && $price
-        && ($cover = save_uploaded_file('cover', 'books/' . md5($id) . '/cover'))
-        && ($file = save_uploaded_file('file', 'books/' . md5($id) . '/file'))
+        && ($cover = save_uploaded_file('cover', 'books/'.md5($id).'/cover'))
+        && ($file = save_uploaded_file('file', 'books/'.md5($id).'/file'))
     ) {
         $name = mysqli_real_escape_string($db, $name);
         $description = mysqli_real_escape_string($db, $description);
@@ -14,9 +13,14 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
         $file = mysqli_real_escape_string($db, $file);
 
         $result = mysqli_query($db, "insert into books (name,description,price,cover,path) values ('$name','$description',$price,'$cover','$file')");
-        if (!$result) redirect('admin.php?page=list-books', mysqli_error($db), 'danger');
-        else redirect('admin.php?page=list-books', 'book saved', 'success');
-    } else redirect('admin.php?page=list-books', 'invalid input', 'danger');
+        if (!$result) {
+            redirect('admin.php?page=list-books', mysqli_error($db), 'danger');
+        } else {
+            redirect('admin.php?page=list-books', 'book saved', 'success');
+        }
+    } else {
+        redirect('admin.php?page=list-books', 'invalid input', 'danger');
+    }
 }
 ?>
 <form class="new-book-form" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
