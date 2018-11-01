@@ -1,5 +1,5 @@
 <?php $guest_required = true; $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
-<form class="login-form" action="/auth.php" method="post">
+<form class="login-form" action="<?= ROOT_URL ?>/auth.php" method="post">
     <div class="field-box">
         <label for="login-username">نام کاربری</label>
         <input id="login-username" name="username" type="text">
@@ -10,7 +10,7 @@
     </div>
     <button type="submit" name="action" value="login">ورود</button>
 </form>
-<form class="register-form" action="/auth.php" method="post">
+<form class="register-form" action="<?= ROOT_URL ?>/auth.php" method="post">
     <div class="field-box">
         <label for="register-username">نام کاربری</label>
         <input id="register-username" name="username" type="text">
@@ -31,4 +31,3 @@
 </form>
 <br style="clear: both;">
 <?php include_once __DIR__ . '/template/foot.php'; ?>
-

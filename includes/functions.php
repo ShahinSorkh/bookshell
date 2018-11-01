@@ -6,7 +6,7 @@ function redirect($location, $msg = null, $msg_type = null)
         $_SESSION['msg'] = $msg;
         $_SESSION['msg-type'] = $msg_type;
     }
-    header("Location: {$location}");
+    header(sprintf('Location: %s/%s', ROOT_URL, $location));
     exit;
 }
 
@@ -19,14 +19,14 @@ function redirect_if_logged_in()
 {
     if (logged_in()) {
         $user = $_SESSION['user'];
-        redirect("/{$user['role']}.php");
+        redirect("{$user['role']}.php");
     }
 }
 
 function redirect_if_not_logged_in()
 {
     if (!logged_in()) {
-        redirect('/login.php', 'you have to log in first', 'danger');
+        redirect('login.php', 'you have to log in first', 'danger');
     }
 }
 
@@ -43,14 +43,14 @@ function is_user()
 function redirect_if_not_user()
 {
     if (!is_user()) {
-        redirect('/index.php', 'you are not allowed to be here', 'danger');
+        redirect('index.php', 'you are not allowed to be here', 'danger');
     }
 }
 
 function redirect_if_not_admin()
 {
     if (!is_admin()) {
-        redirect('/index.php', 'you are not allowed to be here', 'danger');
+        redirect('index.php', 'you are not allowed to be here', 'danger');
     }
 }
 

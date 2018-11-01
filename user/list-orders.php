@@ -19,16 +19,16 @@ $orders = [];
 while(($order = mysqli_fetch_assoc($result))) {
 
     $aresult = mysqli_query($db, "select * from books where id=$order[book_id] limit 1");
-    if (!$aresult) redirect('/admin.php', mysqli_error($db), 'danger');
+    if (!$aresult) redirect('admin.php', mysqli_error($db), 'danger');
     $order['book'] = mysqli_fetch_assoc($aresult);
 
     $orders[] = $order;
 }
 ?>
 <ul class="inline">
-    <li><a href="/user.php?page=list-orders&filter=all">همه</a></li>
-    <li><a href="/user.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
-    <li><a href="/user.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
+    <li><a href="<?= ROOT_URL ?>/user.php?page=list-orders&filter=all">همه</a></li>
+    <li><a href="<?= ROOT_URL ?>/user.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
+    <li><a href="<?= ROOT_URL ?>/user.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
 </ul>
 <table class="list-books">
     <tr>
@@ -46,7 +46,7 @@ while(($order = mysqli_fetch_assoc($result))) {
         <td><?= $order['book']['price']; ?></td>
         <td>
             <?php if ($order['delivered_at']): ?>
-                <a class="action" href="<?= $order['book']['path']; ?>">دریافت کتاب</a>
+                <a class="action" href="<?= ROOT_URL.'/'.$order['book']['path']; ?>">دریافت کتاب</a>
             <?php else: ?>
                 در انتظار
             <?php endif; ?>

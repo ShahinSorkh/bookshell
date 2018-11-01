@@ -46,12 +46,12 @@ a:visited {
 }
 
 .header aside {
-    width: 150px;
+    width: 350px;
     float: left;
 }
 
 .header nav {
-    width: calc(100% - 150px);
+    width: calc(100% - 350px);
     float: right;
 }
 
@@ -81,6 +81,22 @@ a:visited {
 .header nav .active {
     color: #d90022;
     background-color: #ffffff;
+}
+
+.header aside * {
+    float: left;
+}
+
+#search-form {
+    width: 200px;
+}
+
+#search-form input {
+    margin-left: 20px;
+    margin-top: 10px;
+    direction: rtl;
+    border: none;
+    padding: 5px;
 }
 
 .msg {
@@ -242,4 +258,3 @@ ul.inline li::before {
 ul.inline li::after {
     content: '>';
 }
-

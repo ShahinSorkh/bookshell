@@ -14,9 +14,9 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
         $file = mysqli_real_escape_string($db, $file);
 
         $result = mysqli_query($db, "insert into books (name,description,price,cover,path) values ('$name','$description',$price,'$cover','$file')");
-        if (!$result) redirect('/admin.php?page=list-books', mysqli_error($db), 'danger');
-        else redirect('/admin.php?page=list-books', 'book saved', 'success');
-    } else redirect('/admin.php?page=list-books', 'invalid input', 'danger');
+        if (!$result) redirect('admin.php?page=list-books', mysqli_error($db), 'danger');
+        else redirect('admin.php?page=list-books', 'book saved', 'success');
+    } else redirect('admin.php?page=list-books', 'invalid input', 'danger');
 }
 ?>
 <form class="new-book-form" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">

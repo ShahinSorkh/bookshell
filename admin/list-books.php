@@ -20,13 +20,13 @@ while(($book = mysqli_fetch_assoc($result))) {
     <?php foreach ($books as $book): ?>
     <tr>
         <td><?= $book['id']; ?></td>
-        <td style="width:200px;"><img src="<?= $book['cover']; ?>" alt="<?= $book['name']; ?>"></td>
+        <td style="width:200px;"><img src="<?= ROOT_URL.'/'.$book['cover']; ?>" alt="<?= $book['name']; ?>"></td>
         <td><?= $book['name']; ?></td>
         <td><?= $book['price']; ?></td>
         <td><?= $book['description']; ?></td>
         <td><?= $book['created_at']; ?></td>
         <td>
-            <a class="action" href="<?= $book['path']; ?>">دریافت فایل</a>
+            <a class="action" href="<?= ROOT_URL.'/'.$book['path']; ?>">دریافت فایل</a>
             <a class="action" href="<?= $_SERVER['PHP_SELF']; ?>?page=edit-book&id=<?= $book['id']; ?>">ویرایش</a>
             <a class="action" href="<?= $_SERVER['PHP_SELF']; ?>?page=delete-book&id=<?= $book['id']; ?>">حذف</a>
         </td>

@@ -18,20 +18,20 @@ $orders = [];
 while(($order = mysqli_fetch_assoc($result))) {
 
     $aresult = mysqli_query($db, "select * from books where id=$order[book_id] limit 1");
-    if (!$aresult) redirect('/admin.php', mysqli_error($db), 'danger');
+    if (!$aresult) redirect('admin.php', mysqli_error($db), 'danger');
     $order['book'] = mysqli_fetch_assoc($aresult);
 
     $bresult = mysqli_query($db, "select * from users where id=$order[user_id] limit 1");
-    if (!$bresult) redirect('/admin.php', mysqli_error($db), 'danger');
+    if (!$bresult) redirect('admin.php', mysqli_error($db), 'danger');
     $order['user'] = mysqli_fetch_assoc($bresult);
 
     $orders[] = $order;
 }
 ?>
 <ul class="inline">
-    <li><a href="/admin.php?page=list-orders&filter=all">همه</a></li>
-    <li><a href="/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
-    <li><a href="/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
+    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=all">همه</a></li>
+    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
+    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
 </ul>
 <table class="list-books">
     <tr>
@@ -46,7 +46,7 @@ while(($order = mysqli_fetch_assoc($result))) {
     <?php foreach ($orders as $order): ?>
     <tr>
         <td><?= $order['book']['id']; ?></td>
-        <!-- <td style="width:200px;"><img src="<?= $order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>"></td> -->
+        <!-- <td style="width:200px;"><img src="<?= ROOT_URL.'/'.$order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>"></td> -->
         <td><?= $order['book']['name']; ?></td>
         <td><?= $order['book']['price']; ?></td>
         <td><?= $order['user']['username']; ?></td>
@@ -55,7 +55,7 @@ while(($order = mysqli_fetch_assoc($result))) {
             <?php if ($order['delivered_at']): ?>
                 تحویل شده
             <?php else: ?>
-                <a class="action" href="/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+        <a class="action" href="<?= ROOT_URL ?>/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
             <?php endif; ?>
         </td>
     </tr>

@@ -12,26 +12,29 @@ if (logged_in()) $user = $_SESSION['user'];
 <head>
     <meta charset="UTF-8">
     <title>MY BOOK SHELL</title>
-    <link rel="stylesheet" href="/assets/css/normalize.css">
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/normalize.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/font-awesome.min.css">
+    <link rel="icon" href="<?= ROOT_URL ?>/favicon.ico">
 </head>
 <body>
 <div class="wrapper">
     <header class="header">
         <aside>
-            <a href="/"><img src="/assets/img/logo-white-512x512.png" alt="BOOK SHELL"></a>
+            <a href="<?= ROOT_URL ?>"><img src="<?= ROOT_URL ?>/assets/img/logo-white-512x512.png" alt="BOOK SHELL"></a>
+            <form id="search-form" action="<?= ROOT_URL ?>/index.php" method="get">
+                <input type="search" name="q" placeholder="جستجو...">
+            </form>
         </aside>
         <nav>
             <ul>
-                <li><a href="/">MY BOOK SHELL</a></li>
-                <li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="/"><i class="fa fa-home"></i></a></li>
+                <li><a href="<?= ROOT_URL ?>">MY BOOK SHELL</a></li>
+                <li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a></li>
                 <?php if (logged_in()): ?>
-                    <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="/<?= $user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li>
-                    <li><a href="/logout.php">LOGOUT</a></li>
+                    <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="<?= ROOT_URL .'/'.$user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li>
+                    <li><a href="<?= ROOT_URL ?>/logout.php">LOGOUT</a></li>
                 <?php else: ?>
-                    <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="/login.php">LOGIN</a></li>
+                    <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>/login.php">LOGIN</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
