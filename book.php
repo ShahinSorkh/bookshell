@@ -9,19 +9,23 @@ if (mysqli_num_rows($result) < 1) redirect('index.php', 'book not found', 'dange
 
 $book = mysqli_fetch_assoc($result);
 ?>
-<header class="book-head">
-    <h3><?= $book['name']; ?></h3>
-</header>
-<article class="book-body">
-    <img src="<?= ROOT_URL.'/'.$book['cover']; ?>" alt="<?= $book['name']; ?>">
-    <p style="direction:rtl;"><?= nl2br($book['description']); ?></p>
-    <p style="direction:rtl;"><?= $book['price']; ?> تومان</p>
-</article>
-<?php if (logged_in()): ?>
-    <footer class="book-foot"><a href="<?= ROOT_URL ?>/user.php?page=order&id=<?= $book['id']; ?>">سفارش خرید</a></footer>
-    <br style="clear: both;">
-<?php else: ?>
-    <footer class="book-foot"><a href="<?= ROOT_URL ?>/login.php">برای خرید باید وارد شوید</a></footer>
-    <br style="clear: both;">
-<?php endif; ?>
+
+<div class="container py-3">
+    <div class="card">
+        <h4 class="card-header text-center"><?= $book['name'] ?></h4>
+        <div class="card-body">
+            <img class="card-img w-25 ml-4 float-right" src="<?= ROOT_URL.'/'.$book['cover']; ?>" alt="<?= $book['name'] ?>">
+            <p class="card-text rtl"><?= nl2br($book['description']); ?></p>
+        </div>
+        <div class="card-footer">
+        <?php if (logged_in()): ?>
+            <a href="<?= ROOT_URL ?>/user.php?page=order&id=<?= $book['id']; ?>" class="btn btn-primary">سفارش خرید</a>
+        <?php else: ?>
+            <a href="<?= ROOT_URL ?>/login.php" class="btn btn-primary">برای خرید باید وارد شوید</a>
+        <?php endif; ?>
+            <span class="mx-3"><?= $book['price']; ?> تومان</span>
+        </div>
+    </div>
+</div>
+
 <?php include_once __DIR__ . '/template/foot.php'; ?>
