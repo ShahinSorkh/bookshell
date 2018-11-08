@@ -1,11 +1,21 @@
-<?php require_once __DIR__ . '/../includes/index.php';
+<?php require_once __DIR__.'/../includes/index.php';
 
-if (isset($login_required) && $login_required) redirect_if_not_logged_in();
-if (isset($admin_required) && $admin_required) redirect_if_not_admin();
-if (isset($user_required) && $user_required) redirect_if_not_user();
-if (isset($guest_required) && $guest_required) redirect_if_logged_in();
+if (isset($login_required) && $login_required) {
+    redirect_if_not_logged_in();
+}
+if (isset($admin_required) && $admin_required) {
+    redirect_if_not_admin();
+}
+if (isset($user_required) && $user_required) {
+    redirect_if_not_user();
+}
+if (isset($guest_required) && $guest_required) {
+    redirect_if_logged_in();
+}
 $current_page = $current_page ?? 'home';
-if (logged_in()) $user = $_SESSION['user'];
+if (logged_in()) {
+    $user = $_SESSION['user'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="bg-light">
@@ -44,7 +54,7 @@ if (logged_in()) $user = $_SESSION['user'];
                 </li>
                 <?php if (logged_in()): ?>
                     <li class="nav-item <?= $current_page === $user['role'] ? 'active' : ''; ?>">
-                        <a class="nav-link" href="<?= ROOT_URL .'/'.$user['role']; ?>.php">پنل کاربری</a>
+                        <a class="nav-link" href="<?= ROOT_URL.'/'.$user['role']; ?>.php">پنل کاربری</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= ROOT_URL ?>/logout.php">خروج</a>
