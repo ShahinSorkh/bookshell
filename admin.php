@@ -1,6 +1,5 @@
 <?php
 $login_required = true; $admin_required = true; $current_page = 'admin';
-ob_start();
 include_once __DIR__ . '/template/head.php';
 
 $page = $_GET['page'] ?? $_POST['submit'] ?? null;
