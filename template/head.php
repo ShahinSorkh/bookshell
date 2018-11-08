@@ -8,7 +8,7 @@ $current_page = $current_page ?? 'home';
 if (logged_in()) $user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,27 +20,11 @@ if (logged_in()) $user = $_SESSION['user'];
         <link rel="stylesheet" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <?php endif; ?>
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/style.css">
     <link rel="icon" href="<?= ROOT_URL ?>/favicon.ico">
-    <style>
-        /* Sticky footer styles
-        -------------------------------------------------- */
-        html {
-          position: relative;
-          min-height: 100%;
-        }
-        body { margin-bottom: 40px; /* Margin bottom by footer height */ }
-        .footer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 40px; /* Set the fixed height of the footer here */
-          line-height: 40px; /* Vertically center the text there */
-          background-color: #f5f5f5;
-        }
-    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="py-0 navbar-brand" href="<?= ROOT_URL ?>">
             <img height="40" src="<?= ROOT_URL ?>/assets/img/logo-white-512x512.png" alt="BOOK SHELL">
             MY BOOKSHELL PRO
@@ -72,19 +56,22 @@ if (logged_in()) $user = $_SESSION['user'];
                 <?php endif; ?>
             </ul>
             <form action="<?= ROOT_URL ?>/index.php" class="form-inline my-2 my-lg-0" method="get">
-                <input name="q" class="form-control mr-sm-2" type="text" placeholder="جستجو" aria-label="Search">
+                <input name="q" class="form-control mr-sm-2" style="direction:rtl;" type="text" placeholder="جستجو..." aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
             </form>
         </div>
     </nav>
 
     <?php if (isset($_SESSION['msg'])): ?>
-        <div class="alert alert-<?= $_SESSION['msg-type']; ?>">
-            <p><?= $_SESSION['msg']; ?></p>
+        <div class="alert alert-<?= $_SESSION['msg-type']; ?> alert-dismissible fade show" role="alert">
+            <?= $_SESSION['msg']; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <?php
         unset($_SESSION['msg']);
         unset($_SESSION['msg-type']);
         ?>
     <?php endif; ?>
-    <main role="main" class="container">
+    <main role="main">

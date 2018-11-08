@@ -13,22 +13,31 @@ $books = [];
 while(($book = mysqli_fetch_assoc($result))) {
     $books[] = $book;
 }
+?>
+<div class="container-fluid py-3">
+    <div class="row">
+        <?php foreach($books as $book): ?>
+        <div class="col-md-2">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header text-center"><a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id'] ?>"><?= $book['name'] ?></a></div>
+                <img class="card-img-top" src="<?= ROOT_URL.$book['cover'] ?>" alt="<?= $book['name'] ?>">
+                <div class="card-body">
+                    <p class="card-text">
+                        <?= substr($book['description'], 0, 100); ?>
+                        <?= strlen($book['description']) > 100 ? '[...]':''; ?>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id']; ?>" class="btn btn-sm btn-outline-secondary">بیشتر بخوانید</a>
+                            <!-- <button type="button" class="btn btn&#45;sm btn&#45;outline&#45;secondary">Edit</button> -->
+                        </div>
+                        <!-- <small class="text&#45;muted">9 mins</small> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
-foreach($books as $book): ?>
-    <section class="book-card">
-        <header class="book-head">
-            <a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id']; ?>"><h3><?= $book['name']; ?></h3></a>
-        </header>
-        <article class="book-body">
-            <img src="<?= ROOT_URL.$book['cover']; ?>" alt="<?= $book['name']; ?>">
-            <p style="direction:rtl;">
-                <?= substr($book['description'], 0, 100); ?>
-                <?= strlen($book['description']) > 100 ? '[...]':''; ?>
-            </p>
-            <p style="direction:rtl;"><?= $book['price']; ?> تومان</p>
-        </article>
-        <footer class="book-foot"><a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id']; ?>">بیشتر بخوانید</a></footer>
-    </section>
-<?php endforeach; ?>
-<br style="clear: both;">
 <?php include_once __DIR__ . '/template/foot.php'; ?>
