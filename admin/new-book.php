@@ -5,8 +5,8 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
     $description = filter_var($_POST['description']);
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
     if ($name && $description && $price
-        && ($cover = save_uploaded_file('cover', 'books/' . md5($id) . '/cover'))
-        && ($file = save_uploaded_file('file', 'books/' . md5($id) . '/file'))
+        && ($cover = save_uploaded_file('cover', 'books/' . md5(uniqid(rand())) . '/'.uniqid(rand(400,500))))
+        && ($file = save_uploaded_file('file', 'books/' . md5(uniqid(rand())) . '/'.uniqid(rand(200,300))))
     ) {
         $name = mysqli_real_escape_string($db, $name);
         $description = mysqli_real_escape_string($db, $description);

@@ -55,7 +55,7 @@ while(($order = mysqli_fetch_assoc($result))) {
             <?php if ($order['delivered_at']): ?>
                 تحویل شده
             <?php else: ?>
-        <a class="action" href="<?= ROOT_URL ?>/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+		<a class="action" href="<?= ROOT_URL ?>/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
             <?php endif; ?>
         </td>
     </tr>

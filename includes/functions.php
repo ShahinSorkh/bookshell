@@ -56,6 +56,7 @@ function redirect_if_not_admin()
 
 function save_uploaded_file($field, $filename)
 {
+    if (!array_key_exists($field, $_FILES)) return false;
     if ($_FILES[$field]['error'] !== UPLOAD_ERR_OK) return false;
     $info = pathinfo($_FILES[$field]['name']);
     $newname = "$filename.$info[extension]";

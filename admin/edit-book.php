@@ -11,19 +11,21 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'edit-book') {
 
     $description = filter_var($_POST['description']);
     $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
+    $dir_name = basename(dirname($book['path']));
 
     $cover = $name && $_FILES['cover']['error'] === UPLOAD_ERR_OK
-        ? save_uploaded_file('cover', 'books/' . md5($id) . '/cover')
+        ? save_uploaded_file('cover', 'books/' . $dir_name . '/'.uniqid(rand(400,500)))
         : filter_var($_POST['cover']);
 
     $file = $name && $_FILES['file']['error'] === UPLOAD_ERR_OK
-        ? save_uploaded_file('file', 'books/' . md5($id) . '/file')
+        ? save_uploaded_file('file', 'books/' . $dir_name . '/'.uniqid(rand(200,300)))
         : filter_var($_POST['file']);
 
     if ($name && $description && $price && $cover && $file) {
         $name = mysqli_real_escape_string($db, $name);
         $description = mysqli_real_escape_string($db, $description);
         $cover = mysqli_real_escape_string($db, $cover);
+        $file = mysqli_real_escape_string($db, $file);
 
         $result = mysqli_query($db, "update books set name='$name', description='$description', path='$file', cover='$cover', price=$price where id=$book[id]");
         if (!$result) redirect('admin.php?page=list-books', mysqli_error($db), 'danger');

@@ -20,7 +20,7 @@ foreach($books as $book): ?>
             <a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id']; ?>"><h3><?= $book['name']; ?></h3></a>
         </header>
         <article class="book-body">
-            <img src="<?= ROOT_URL.'/'.$book['cover']; ?>" alt="<?= $book['name']; ?>">
+            <img src="<?= ROOT_URL.$book['cover']; ?>" alt="<?= $book['name']; ?>">
             <p style="direction:rtl;">
                 <?= substr($book['description'], 0, 100); ?>
                 <?= strlen($book['description']) > 100 ? '[...]':''; ?>

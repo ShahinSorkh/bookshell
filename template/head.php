@@ -22,17 +22,17 @@ if (logged_in()) $user = $_SESSION['user'];
     <header class="header">
         <aside>
             <a href="<?= ROOT_URL ?>"><img src="<?= ROOT_URL ?>/assets/img/logo-white-512x512.png" alt="BOOK SHELL"></a>
-            <form id="search-form" action="<?= ROOT_URL ?>/index.php" method="get">
+	    <form id="search-form" action="<?= ROOT_URL ?>/index.php" method="get">
                 <input type="search" name="q" placeholder="جستجو...">
             </form>
         </aside>
         <nav>
             <ul>
                 <li><a href="<?= ROOT_URL ?>">MY BOOK SHELL</a></li>
-                <li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a></li>
+		<li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a></li>
                 <?php if (logged_in()): ?>
                     <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="<?= ROOT_URL .'/'.$user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li>
-                    <li><a href="<?= ROOT_URL ?>/logout.php">LOGOUT</a></li>
+		    <li><a href="<?= ROOT_URL ?>/logout.php">LOGOUT</a></li>
                 <?php else: ?>
                     <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>/login.php">LOGIN</a></li>
                 <?php endif; ?>
