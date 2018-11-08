@@ -1,11 +1,21 @@
-<?php require_once __DIR__ . '/../includes/index.php';
+<?php require_once __DIR__.'/../includes/index.php';
 
-if (isset($login_required) && $login_required) redirect_if_not_logged_in();
-if (isset($admin_required) && $admin_required) redirect_if_not_admin();
-if (isset($user_required) && $user_required) redirect_if_not_user();
-if (isset($guest_required) && $guest_required) redirect_if_logged_in();
+if (isset($login_required) && $login_required) {
+    redirect_if_not_logged_in();
+}
+if (isset($admin_required) && $admin_required) {
+    redirect_if_not_admin();
+}
+if (isset($user_required) && $user_required) {
+    redirect_if_not_user();
+}
+if (isset($guest_required) && $guest_required) {
+    redirect_if_logged_in();
+}
 $current_page = $current_page ?? 'home';
-if (logged_in()) $user = $_SESSION['user'];
+if (logged_in()) {
+    $user = $_SESSION['user'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +55,7 @@ if (logged_in()) $user = $_SESSION['user'];
     <!--             <li><a href="<?= ROOT_URL ?>">MY BOOK SHELL</a></li> -->
 	<!-- 	<li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>"><i class="fa fa&#45;home"></i></a></li> -->
     <!--             <?php if (logged_in()): ?> -->
-    <!--                 <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="<?= ROOT_URL .'/'.$user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li> -->
+    <!--                 <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="<?= ROOT_URL.'/'.$user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li> -->
 	<!-- 	    <li><a href="<?= ROOT_URL ?>/logout.php">LOGOUT</a></li> -->
     <!--             <?php else: ?> -->
     <!--                 <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>/login.php">LOGIN</a></li> -->
