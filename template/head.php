@@ -63,7 +63,7 @@ if (logged_in()) $user = $_SESSION['user'];
     </nav>
 
     <?php if (isset($_SESSION['msg'])): ?>
-        <div class="alert alert-<?= $_SESSION['msg-type']; ?> alert-dismissible fade show" role="alert">
+        <div class="alert alert-<?= $_SESSION['msg-type']; ?> alert-dismissible text-center fade show" role="alert">
             <?= $_SESSION['msg']; ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
