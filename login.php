@@ -1,4 +1,4 @@
-<?php $guest_required = true; $current_page = 'login'; include_once __DIR__ . '/template/head.php'; ?>
+<?php $guest_required = true; $current_page = 'login'; include_once __DIR__.'/template/head.php'; ?>
 <form class="login-form" action="<?= ROOT_URL ?>/auth.php" method="post">
     <div class="field-box">
         <label for="login-username">نام کاربری</label>
@@ -30,4 +30,4 @@
     <button type="submit" name="action" value="register">ثبت نام</button>
 </form>
 <br style="clear: both;">
-<?php include_once __DIR__ . '/template/foot.php'; ?>
+<?php include_once __DIR__.'/template/foot.php'; ?>
