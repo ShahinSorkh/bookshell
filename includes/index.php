@@ -8,8 +8,12 @@ $env_entries = explode(PHP_EOL, file_get_contents(ROOT_DIR.'/.env'));
 foreach ($env_entries as $entry) {
     if (strpos($entry, '=') === false) continue;
     list ($key, $value) = explode('=', $entry);
-    if (!defined($key)) define(trim($key), trim($value));
+    if ($key === 'DEBUG')
+        !defined(trim($key)) ? define(trim($key), boolval($value)) : null;
+    else
+        !defined(trim($key)) ? define(trim($key), trim($value)) : null;
 }
+!defined('DEBUG') ? define('DEBUG', false) : null;
 
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
