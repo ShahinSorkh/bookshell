@@ -1,8 +1,10 @@
     </main>
 
-<footer class="footer">
-    <p>COPYRIGHT &copy; <?= date('Y'); ?></p>
-</footer>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">COPYRIGHT &copy; <?= date('Y'); ?></span>
+      </div>
+    </footer>
 
 <?php if (DEBUG): ?>
     <script src="<?= ROOT_URL ?>/assets/js/jquery.min.js"></script>

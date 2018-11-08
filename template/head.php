@@ -21,41 +21,65 @@ if (logged_in()) $user = $_SESSION['user'];
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <?php endif; ?>
     <link rel="icon" href="<?= ROOT_URL ?>/favicon.ico">
+    <style>
+        /* Sticky footer styles
+        -------------------------------------------------- */
+        html {
+          position: relative;
+          min-height: 100%;
+        }
+        body { margin-bottom: 40px; /* Margin bottom by footer height */ }
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 40px; /* Set the fixed height of the footer here */
+          line-height: 40px; /* Vertically center the text there */
+          background-color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-       <h5 class="my-0 mr-md-auto font-weight-normal">MY BOOKSHELL PRO</h5>
-       <nav class="my-2 my-md-0 mr-md-3">
-           <a class="p-2 text-dark" href="#">تماس با ما</a>
-           <a class="p-2 text-dark" href="#">Enterprise</a>
-           <a class="p-2 text-dark" href="#">Support</a>
-           <a class="p-2 text-dark" href="#">Pricing</a>
-       </nav>
-       <a class="btn btn-outline-primary" href="#">ورود</a>
-    </div>
-    <!-- <header class="header"> -->
-    <!--     <aside> -->
-    <!--         <a href="<?= ROOT_URL ?>"><img src="<?= ROOT_URL ?>/assets/img/logo&#45;white&#45;512x512.png" alt="BOOK SHELL"></a> -->
-	<!--     <form id="search&#45;form" action="<?= ROOT_URL ?>/index.php" method="get"> -->
-    <!--             <input type="search" name="q" placeholder="جستجو..."> -->
-    <!--         </form> -->
-    <!--     </aside> -->
-    <!--     <nav> -->
-    <!--         <ul> -->
-    <!--             <li><a href="<?= ROOT_URL ?>">MY BOOK SHELL</a></li> -->
-	<!-- 	<li><a class="<?= $current_page === 'home' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>"><i class="fa fa&#45;home"></i></a></li> -->
-    <!--             <?php if (logged_in()): ?> -->
-    <!--                 <li><a class="<?= $current_page === $user['role'] ? 'active' : ''; ?>" href="<?= ROOT_URL .'/'.$user['role']; ?>.php"><?= strtoupper($user['role']); ?></a></li> -->
-	<!-- 	    <li><a href="<?= ROOT_URL ?>/logout.php">LOGOUT</a></li> -->
-    <!--             <?php else: ?> -->
-    <!--                 <li><a class="<?= $current_page === 'login' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>/login.php">LOGIN</a></li> -->
-    <!--             <?php endif; ?> -->
-    <!--         </ul> -->
-    <!--     </nav> -->
-    <!--     <br style="clear: both;"> -->
-    <!-- </header> -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="py-0 navbar-brand" href="<?= ROOT_URL ?>">
+            <img height="40" src="<?= ROOT_URL ?>/assets/img/logo-white-512x512.png" alt="BOOK SHELL">
+            MY BOOKSHELL PRO
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars"
+                aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbars">
+            <ul class="navbar-nav mr-auto float-right">
+                <li class="nav-item <?= $current_page === 'home' ? 'active' : ''; ?>">
+                    <a class="nav-link" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item <?= $current_page === 'contactus' ? 'active' : ''; ?>">
+                    <a class="nav-link" href="#">تماس با ما</a>
+                </li>
+                <?php if (logged_in()): ?>
+                    <li class="nav-item <?= $current_page === $user['role'] ? 'active' : ''; ?>">
+                        <a class="nav-link" href="<?= ROOT_URL .'/'.$user['role']; ?>.php">پنل کاربری</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= ROOT_URL ?>/logout.php">خروج</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item <?= $current_page === 'contactus' ? 'active' : ''; ?>">
+                        <a class="nav-link <?= $current_page === 'login' ? 'active' : ''; ?>" href="<?= ROOT_URL ?>/login.php">ورود</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+            <form action="<?= ROOT_URL ?>/index.php" class="form-inline my-2 my-lg-0" method="get">
+                <input name="q" class="form-control mr-sm-2" type="text" placeholder="جستجو" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
+            </form>
+        </div>
+    </nav>
+
     <?php if (isset($_SESSION['msg'])): ?>
-        <div class="msg <?= $_SESSION['msg-type']; ?>">
+        <div class="alert alert-<?= $_SESSION['msg-type']; ?>">
             <p><?= $_SESSION['msg']; ?></p>
         </div>
         <?php
@@ -63,5 +87,4 @@ if (logged_in()) $user = $_SESSION['user'];
         unset($_SESSION['msg-type']);
         ?>
     <?php endif; ?>
-    <main class="main">
-
+    <main role="main" class="container">
