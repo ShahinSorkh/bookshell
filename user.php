@@ -3,6 +3,7 @@ $login_required = true; $user_required = true; $current_page = 'user';
 include_once __DIR__ . '/template/head.php';
 
 $page = $_GET['page'] ?? $_POST['submit'] ?? null;
+if ($page === null) redirect('user.php?page=list-orders');
 ?>
 
 <div class="container-fluid my-3">
