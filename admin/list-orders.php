@@ -56,9 +56,9 @@ while(($order = mysqli_fetch_assoc($result))) {
         <td><?= $order['user']['email']; ?></td>
         <td>
             <?php if ($order['delivered_at']): ?>
-                تحویل شده
+                <a class="btn btn-sm btn-success disabled" href="#">تحویل شده</a>
             <?php else: ?>
-        <a class="action" href="<?= ROOT_URL ?>/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
+                <a class="btn btn-sm btn-info" href="<?= ROOT_URL ?>/admin.php?page=deliver-order&id=<?= $order['id']; ?>">تحویل شد</a>
             <?php endif; ?>
         </td>
     </tr>

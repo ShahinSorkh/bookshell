@@ -15,7 +15,7 @@ while(($book = mysqli_fetch_assoc($result))) {
 }
 ?>
 <div class="container-fluid py-3">
-    <div class="row">
+    <div class="row rtl">
         <?php foreach($books as $book): ?>
         <div class="col-md-2">
             <div class="card mb-4 shadow-sm">
@@ -29,9 +29,7 @@ while(($book = mysqli_fetch_assoc($result))) {
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="<?= ROOT_URL ?>/book.php?id=<?= $book['id']; ?>" class="btn btn-sm btn-outline-secondary">بیشتر بخوانید</a>
-                            <!-- <button type="button" class="btn btn&#45;sm btn&#45;outline&#45;secondary">Edit</button> -->
                         </div>
-                        <!-- <small class="text&#45;muted">9 mins</small> -->
                     </div>
                 </div>
             </div>

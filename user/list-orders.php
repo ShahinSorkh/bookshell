@@ -49,9 +49,9 @@ while(($order = mysqli_fetch_assoc($result))) {
         <td><?= $order['book']['price']; ?></td>
         <td>
             <?php if ($order['delivered_at']): ?>
-                <a class="action" href="<?= ROOT_URL.'/'.$order['book']['path']; ?>">دریافت کتاب</a>
+                <a class="btn btn-sm btn-success" href="<?= ROOT_URL.'/'.$order['book']['path']; ?>">دریافت کتاب</a>
             <?php else: ?>
-                در انتظار
+                <a class="btn btn-sm btn-warning disabled" href="#">در انتظار</a>
             <?php endif; ?>
         </td>
     </tr>
