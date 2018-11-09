@@ -9,8 +9,10 @@ case 'not-delivered':
     $result = mysqli_query($db, 'select * from orders where delivered_at is null');
     break;
 case 'all':
-default:
     $result = mysqli_query($db, 'select * from orders');
+    break;
+default:
+    redirect('admin.php?page=list-orders');
 }
 if (!$result) die(mysqli_error($db));
 
@@ -28,16 +30,16 @@ while(($order = mysqli_fetch_assoc($result))) {
     $orders[] = $order;
 }
 ?>
-<ul class="inline">
-    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=all">همه</a></li>
-    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></li>
-    <li><a href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></li>
-</ul>
-<table class="list-books">
-    <tr>
-        <th>ردیف</th>
-        <!-- <th>جلد</th> -->
-        <th>نام کتاب</th>
+
+<div class="row text-center rtl mb-3">
+    <div class="col"><a class="list-group-item <?= $filter === 'all' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=all">همه</a></div>
+    <div class="col"><a class="list-group-item <?= $filter === 'delivered' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></div>
+    <div class="col"><a class="list-group-item <?= $filter === 'not-delivered' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></div>
+</div>
+
+<table class="table table-striped text-center rtl">
+    <tr class="thead-dark">
+        <th>کتاب</th>
         <th>قیمت</th>
         <th>کاربر</th>
         <th>ایمیل</th>
@@ -45,9 +47,10 @@ while(($order = mysqli_fetch_assoc($result))) {
     </tr>
     <?php foreach ($orders as $order): ?>
     <tr>
-        <td><?= $order['book']['id']; ?></td>
-        <!-- <td style="width:200px;"><img src="<?= ROOT_URL.'/'.$order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>"></td> -->
-        <td><?= $order['book']['name']; ?></td>
+        <td>
+            <img class="img-thumbnail mx-3" width="100" src="<?= ROOT_URL.$order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>">
+            <?= $order['book']['name']; ?>
+        </td>
         <td><?= $order['book']['price']; ?></td>
         <td><?= $order['user']['username']; ?></td>
         <td><?= $order['user']['email']; ?></td>
@@ -61,4 +64,3 @@ while(($order = mysqli_fetch_assoc($result))) {
     </tr>
     <?php endforeach; ?>
 </table>
-

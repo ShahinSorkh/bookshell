@@ -19,27 +19,33 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
     } else redirect('admin.php?page=list-books', 'invalid input', 'danger');
 }
 ?>
-<form class="new-book-form" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-    <div class="field-box">
-        <label for="cover">جلد</label>
-        <input id="cover" type="file" name="cover" accept="image/*">
-    </div>
-    <div class="field-box">
-        <label for="file">فایل</label>
-        <input id="file" type="file" name="file">
-    </div>
-    <div style="float:right;width:50%;" class="field-box">
-        <label for="name">نام کتاب</label>
-        <input style="margin-right:10px;" id="name" type="text" name="name">
-    </div>
-    <div style="float:right;width:50%;" class="field-box">
-        <label for="price">قیمت</label>
-        <input style="margin-left:10px;" id="price" type="number" name="price">
-    </div>
-    <div class="field-box">
-        <label for="description">توضیحات</label>
-        <textarea id="description" name="description"></textarea>
-    </div>
-    <button type="submit" name="submit" value="new-book">ذخیره</button>
-</form>
 
+<form class="form-book rtl" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+
+    <div class="custom-file">
+        <label class="custom-file-label" for="cover">جلد</label>
+        <input class="custom-file-input" id="cover" type="file" name="cover" accept="image/*" required>
+    </div>
+
+    <div class="custom-file">
+        <label class="custom-file-label" for="file">فایل</label>
+        <input class="custom-file-input" id="file" type="file" name="file" required>
+    </div>
+
+    <div class="form-group">
+        <label for="name">نام کتاب</label>
+        <input class="form-control" style="margin-right:10px;" id="name" type="text" name="name" required autofocus>
+    </div>
+
+    <div class="form-group">
+        <label for="price">قیمت</label>
+        <input class="form-control" style="margin-left:10px;" id="price" type="number" name="price" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">توضیحات</label>
+        <textarea rows="7" class="form-control" id="description" name="description" required></textarea>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" name="submit" value="new-book" type="submit">ذخیره</button>
+</form>

@@ -26,6 +26,20 @@ body { margin-bottom: 40px; /* Margin bottom by footer height */ }
     --input-padding-y: .5rem;
 }
 
+.custom-file-label {
+    padding-right: 100px;
+}
+
+.custom-file-label::after {
+    content: "انتخاب فایل";
+}
+
+.form-book {
+    width: 100%;
+    /* max-width: 420px; */
+    padding: 25px;
+}
+
 .form-signin {
     width: 50%;
     /* max-width: 420px; */

@@ -43,7 +43,7 @@ while(($order = mysqli_fetch_assoc($result))) {
     <?php foreach ($orders as $order): ?>
     <tr>
         <td class="text-right">
-            <img class="img-thumbnail mx-3" width="100" src="<?= $order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>">
+            <img class="img-thumbnail mx-3" width="100" src="<?= ROOT_URL.$order['book']['cover']; ?>" alt="<?= $order['book']['name']; ?>">
             <?= $order['book']['name']; ?>
         </td>
         <td><?= $order['book']['price']; ?></td>
@@ -57,4 +57,3 @@ while(($order = mysqli_fetch_assoc($result))) {
     </tr>
     <?php endforeach; ?>
 </table>
-

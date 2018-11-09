@@ -62,7 +62,7 @@ function save_uploaded_file($field, $filename)
     $newname = "$filename.$info[extension]";
 
     $target = "/uploaded/$newname";
-    $target_path = ROOT_DIR . $target;
+    $target_path = rtrim(ROOT_DIR, '/') . $target;
     if (!is_dir(dirname($target_path))) mkdir(dirname($target_path), 0777, true);
     if (is_file($target_path)) unlink($target_path);
 
