@@ -23,4 +23,4 @@ $('.custom-file-input').on('change', function() {
 
 </body>
 </html>
-<?php require_once __DIR__ . '/../includes/terminate.php'; ?>
+<?php require_once __DIR__.'/../includes/terminate.php'; ?>

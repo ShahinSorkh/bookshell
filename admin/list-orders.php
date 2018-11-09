@@ -14,17 +14,22 @@ case 'all':
 default:
     redirect('admin.php?page=list-orders');
 }
-if (!$result) die(mysqli_error($db));
+if (!$result) {
+    die(mysqli_error($db));
+}
 
 $orders = [];
-while(($order = mysqli_fetch_assoc($result))) {
-
+while (($order = mysqli_fetch_assoc($result))) {
     $aresult = mysqli_query($db, "select * from books where id=$order[book_id] limit 1");
-    if (!$aresult) redirect('admin.php', mysqli_error($db), 'danger');
+    if (!$aresult) {
+        redirect('admin.php', mysqli_error($db), 'danger');
+    }
     $order['book'] = mysqli_fetch_assoc($aresult);
 
     $bresult = mysqli_query($db, "select * from users where id=$order[user_id] limit 1");
-    if (!$bresult) redirect('admin.php', mysqli_error($db), 'danger');
+    if (!$bresult) {
+        redirect('admin.php', mysqli_error($db), 'danger');
+    }
     $order['user'] = mysqli_fetch_assoc($bresult);
 
     $orders[] = $order;
@@ -32,9 +37,9 @@ while(($order = mysqli_fetch_assoc($result))) {
 ?>
 
 <div class="row text-center rtl mb-3">
-    <div class="col"><a class="list-group-item <?= $filter === 'all' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=all">همه</a></div>
-    <div class="col"><a class="list-group-item <?= $filter === 'delivered' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></div>
-    <div class="col"><a class="list-group-item <?= $filter === 'not-delivered' ? 'active':'' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></div>
+    <div class="col"><a class="list-group-item <?= $filter === 'all' ? 'active' : '' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=all">همه</a></div>
+    <div class="col"><a class="list-group-item <?= $filter === 'delivered' ? 'active' : '' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=delivered">تحویل شده ها</a></div>
+    <div class="col"><a class="list-group-item <?= $filter === 'not-delivered' ? 'active' : '' ?>" href="<?= ROOT_URL ?>/admin.php?page=list-orders&filter=not-delivered">تحویل نشده ها</a></div>
 </div>
 
 <table class="table table-striped text-center rtl">
