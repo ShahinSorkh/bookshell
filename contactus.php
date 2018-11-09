@@ -1,4 +1,4 @@
-<?php $current_page = 'contactus'; include_once __DIR__ . '/template/head.php'; ?>
+<?php $current_page = 'contactus'; include_once __DIR__.'/template/head.php'; ?>
 
 <div class="container py-3">
     <div class="row">
@@ -26,4 +26,4 @@
     </div>
 </div>
 
-<?php include_once __DIR__ . '/template/foot.php'; ?>
+<?php include_once __DIR__.'/template/foot.php'; ?>
