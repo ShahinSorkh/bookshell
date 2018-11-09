@@ -1,9 +1,11 @@
 <?php
 $result = mysqli_query($db, 'select * from books');
-if (!$result) die(mysqli_error($db));
+if (!$result) {
+    die(mysqli_error($db));
+}
 
 $books = [];
-while(($book = mysqli_fetch_assoc($result))) {
+while (($book = mysqli_fetch_assoc($result))) {
     $books[] = $book;
 }
 ?>
@@ -25,7 +27,7 @@ while(($book = mysqli_fetch_assoc($result))) {
             <?= $book['name']; ?>
         </td>
         <td><?= $book['price']; ?></td>
-        <td><?= substr($book['description'], 0, 100); ?><?= strlen($book['description']) > 100 ? '[...]':'' ?></td>
+        <td><?= substr($book['description'], 0, 100); ?><?= strlen($book['description']) > 100 ? '[...]' : '' ?></td>
         <td><?= $book['created_at']; ?></td>
         <td class="btn-group btn-group-sm" style="direction:ltr;">
             <a class="btn btn-danger" href="<?= $_SERVER['PHP_SELF']; ?>?page=delete-book&id=<?= $book['id']; ?>">حذف</a>
