@@ -35,7 +35,13 @@ if (logged_in()) $user = $_SESSION['user'];
         </button>
 
         <div class="collapse navbar-collapse" id="navbars">
-            <ul class="navbar-nav mr-auto float-right">
+            <form action="<?= ROOT_URL ?>/index.php" class="form-inline my-2 my-lg-0" method="get">
+                <div class="input-group">
+                    <input name="q" class="form-control" style="direction:rtl;" type="text" placeholder="جستجو..." aria-label="Search">
+                    <span class="input-group-append"><button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button></span>
+                </div>
+            </form>
+            <ul class="navbar-nav ml-auto rtl">
                 <li class="nav-item <?= $current_page === 'home' ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a>
                 </li>
@@ -55,10 +61,6 @@ if (logged_in()) $user = $_SESSION['user'];
                     </li>
                 <?php endif; ?>
             </ul>
-            <form action="<?= ROOT_URL ?>/index.php" class="form-inline my-2 my-lg-0" method="get">
-                <input name="q" class="form-control mr-sm-2" style="direction:rtl;" type="text" placeholder="جستجو..." aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
-            </form>
         </div>
     </nav>
 
