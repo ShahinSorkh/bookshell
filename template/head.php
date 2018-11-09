@@ -18,7 +18,7 @@ if (logged_in()) $user = $_SESSION['user'];
         <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/bootstrap.min.css">
     <?php else: ?>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <?php endif; ?>
     <link rel="stylesheet" href="<?= ROOT_URL ?>/assets/css/style.css">
     <link rel="icon" href="<?= ROOT_URL ?>/favicon.ico">
