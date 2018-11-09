@@ -40,7 +40,7 @@ if (logged_in()) $user = $_SESSION['user'];
                     <a class="nav-link" href="<?= ROOT_URL ?>"><i class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item <?= $current_page === 'contactus' ? 'active' : ''; ?>">
-                    <a class="nav-link" href="#">تماس با ما</a>
+                    <a class="nav-link" href="<?= ROOT_URL ?>/contactus.php">تماس با ما</a>
                 </li>
                 <?php if (logged_in()): ?>
                     <li class="nav-item <?= $current_page === $user['role'] ? 'active' : ''; ?>">
