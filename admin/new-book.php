@@ -15,8 +15,8 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'new-book') {
 
         $result = mysqli_query($db, "insert into books (name,description,price,cover,path) values ('$name','$description',$price,'$cover','$file')");
         if (!$result) redirect('admin.php?page=list-books', mysqli_error($db), 'danger');
-        else redirect('admin.php?page=list-books', 'book saved', 'success');
-    } else redirect('admin.php?page=list-books', 'invalid input', 'danger');
+        else redirect('admin.php?page=list-books', 'کتاب با موفقیت ذخیره شد', 'success');
+    } else redirect('admin.php?page=new-book', 'ورودی نامعتبر', 'danger');
 }
 ?>
 

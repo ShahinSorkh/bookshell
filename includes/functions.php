@@ -26,7 +26,7 @@ function redirect_if_logged_in()
 function redirect_if_not_logged_in()
 {
     if (!logged_in()) {
-        redirect('login.php', 'you have to log in first', 'danger');
+        redirect('login.php', 'ابتدا باید وارد حساب خود شوید', 'warning');
     }
 }
 
@@ -43,14 +43,14 @@ function is_user()
 function redirect_if_not_user()
 {
     if (!is_user()) {
-        redirect('index.php', 'you are not allowed to be here', 'danger');
+        redirect('index.php', 'خطای دسترسی', 'warning');
     }
 }
 
 function redirect_if_not_admin()
 {
     if (!is_admin()) {
-        redirect('index.php', 'you are not allowed to be here', 'danger');
+        redirect('index.php', 'خطای دسترسی', 'warning');
     }
 }
 
@@ -69,4 +69,3 @@ function save_uploaded_file($field, $filename)
     move_uploaded_file($_FILES[$field]['tmp_name'], $target_path);
     return $target;
 }
-
