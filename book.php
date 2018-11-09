@@ -1,11 +1,15 @@
 <?php
 ob_start();
-include_once __DIR__ . '/template/head.php';
+include_once __DIR__.'/template/head.php';
 
 $book_id = intval($_GET['id']);
 $result = mysqli_query($db, "select * from books where id=$book_id limit 1");
-if (!$result) redirect('index.php', mysqli_error($db), 'danger');
-if (mysqli_num_rows($result) < 1) redirect('index.php', 'موردی یافت نشد', 'danger');
+if (!$result) {
+    redirect('index.php', mysqli_error($db), 'danger');
+}
+if (mysqli_num_rows($result) < 1) {
+    redirect('index.php', 'موردی یافت نشد', 'danger');
+}
 
 $book = mysqli_fetch_assoc($result);
 ?>
@@ -28,4 +32,4 @@ $book = mysqli_fetch_assoc($result);
     </div>
 </div>
 
-<?php include_once __DIR__ . '/template/foot.php'; ?>
+<?php include_once __DIR__.'/template/foot.php'; ?>
